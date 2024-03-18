@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang Web của Vượng</title>
+<style>
+  body {
+    background-color: #EE0000; /* Màu xanh lá cây */
+    margin: 0;
+    padding: 0;
+    font-family: Time New Roma, sans-serif;
+    overflow: hidden; /* Ngăn việc hiển thị phần nội dung vượt ra ngoài */
+  }
+
+  .container {
+    position: relative;
+    text-align: center;
+    padding-top: 100px;
+  }
+
+  .icon {
+    font-size: 48px;
+    color: #3399CC;
+    cursor: &#10145; 
+ }
+
+  .lan {
+    max-width: 200px;
+    height: auto;
+    position: absolute;
+    top: 100%;
+    transform: translateY(-50%);
+  }
+
+  .lan-left {
+    left: 0;
+  }
+
+  .lan-right {
+    right: 0;
+  }
+
+  .message {
+    color: #FFFF00;
+    font-size: 40px;
+    margin-top: 50px;
+  }
+
+  .firework {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: yellow;
+    border-radius: 50%;
+    animation: explode 1s ease-out;
+  }
+
+  @keyframes explode {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(30);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <p>Muốn thấy những lời của Vượng xin nhấp vào biểu tượng sau:</p>
+    <div class="icon" onclick="showMessage()">→</div>
+    <img src="lan.png" alt="lan" class="lan lan-left">
+    <img src="lan.png" alt="lan" class="lan lan-right">
+    <div id="message" class="message" style="display: none;">CHÚC MỪNG KHAI TRƯƠNG QUÁN!</div>
+  </div>
+
+  <script>
+    function showMessage() {
+      document.getElementById("message").style.display = "block";
+      createFireworks();
+    }
+
+    function createFireworks() {
+      let container = document.querySelector('.container');
+      let numFireworks = 30;
+      for (let i = 0; i < numFireworks; i++) {
+        let firework = document.createElement('div');
+        firework.classList.add('firework');
+        firework.style.left = Math.random() * 100 + 'vw';
+        firework.style.top = Math.random() * 100 + 'vh';
+        container.appendChild(firework);
+        setTimeout(() => {
+          container.removeChild(firework);
+        }, 1000);
+      }
+    }
+  </script>
+</body>
+</html>
+
